@@ -1,0 +1,13 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: auth-service
+  cloud:
+    config:
+      enabled: false # Disable config server for now to speed up startup
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
