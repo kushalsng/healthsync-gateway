@@ -22,40 +22,7 @@ This project is a robust, scalable microservices-based platform designed to faci
 ### System Architecture
 The system follows a standard **Microservices Architecture**, where each distinct functional capability is encapsulated in its own deployable unit. These services communicate over HTTP/REST, coordinated by the Spring Cloud ecosystem.
 
-```mermaid
-graph TD
-    Client[Client App / External System]
-    Gateway[API Gateway<br/>(Spring Cloud Gateway)]
-    Discovery[Discovery Service<br/>(Eureka Server)]
-    Config[Config Server]
-    
-    subgraph "Core Services"
-        Auth[Auth Service]
-        Norm[Normalization Service]
-        Audit[Audit Log Service]
-    end
-    
-    subgraph "External/Legacy Simulation"
-        Legacy[Legacy Mock Service]
-    end
 
-    Client -->|HTTPS| Gateway
-    Gateway -.->|Register/Lookup| Discovery
-    Auth -.->|Register| Discovery
-    Norm -.->|Register| Discovery
-    Audit -.->|Register| Discovery
-    Legacy -.->|Register| Discovery
-    
-    Gateway -->|Route Request| Auth
-    Gateway -->|Route Request| Norm
-    Gateway -->|Route Request| Audit
-    
-    Norm -->|Fetch Data| Legacy
-    Norm -->|Log Event| Audit
-    Auth -->|Log Event| Audit
-    
-    Services -->|Fetch Config| Config
-```
 
 ### Component Breakdown
 
